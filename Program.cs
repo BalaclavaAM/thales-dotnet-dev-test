@@ -9,6 +9,8 @@ namespace thales_dotnet_dev_test{
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddHttpClient();
+
             builder.Services.AddScoped<EmployeesRepository>();
             builder.Services.AddScoped<EmployeeService>();
 

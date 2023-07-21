@@ -28,7 +28,7 @@ namespace thales_dotnet_dev_test.BusinessLogic
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error al calcular los salarios anuales de los empleados.");
+                _logger.LogError(ex, "Error calculating annual salaries of employees.");
                 return new List<Employee>();
             }
         }
@@ -43,12 +43,12 @@ namespace thales_dotnet_dev_test.BusinessLogic
                     employee.EmployeeAnualSalary = employee.EmployeeSalary * 12;
                     return employee;
                 }
-                _logger.LogError("No se encontró el empleado con id {EmployeeId}", employeeId);
+                _logger.LogError("Employee id {EmployeeId} not found", employeeId);
                 return new Employee();
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error al calcular el salario anual del empleado.");
+                _logger.LogError(ex, "Error calculating the employee's annual salary.");
                 return new Employee();
             }
         }

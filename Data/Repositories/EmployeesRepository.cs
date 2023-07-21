@@ -32,17 +32,22 @@ namespace thales_dotnet_dev_test.Data.Repositories
                     }
                     else
                     {
-                        _logger.LogWarning("No se obtuvieron empleados desde la API.");
+                        _logger.LogWarning("The API didn't return employees.");
                     }
+                }
+                //check if 429
+                else if (response.StatusCode == System.Net.HttpStatusCode.TooManyRequests)
+                {
+                    _logger.LogWarning("We reached the limit of petitions to the API.");
                 }
                 else
                 {
-                    _logger.LogWarning("No se obtuvieron empleados desde la API. StatusCode: {StatusCode}", response.StatusCode);
+                    _logger.LogWarning("The API didn't return employees. StatusCode: {StatusCode}", response.StatusCode);
                 }
             }
             catch (System.Exception ex)
             {
-                _logger.LogError(ex, "Error al obtener los empleados desde la API.");
+                _logger.LogError(ex, "Error at obtaining eployees from the api.");
             }
 
             return employees;
@@ -64,17 +69,21 @@ namespace thales_dotnet_dev_test.Data.Repositories
                     }
                     else
                     {
-                        _logger.LogWarning("No se obtuvo el empleado desde la API.");
+                        _logger.LogWarning("The employee was not obtained from the API.");
                     }
+                }
+                else if (response.StatusCode == System.Net.HttpStatusCode.TooManyRequests)
+                {
+                    _logger.LogWarning("We reached the limit of petitions to the API.");
                 }
                 else
                 {
-                    _logger.LogWarning("No se obtuvo el empleado desde la API. StatusCode: {StatusCode}", response.StatusCode);
+                    _logger.LogWarning("The employee was not obtained from the API. StatusCode: {StatusCode}", response.StatusCode);
                 }
             }
             catch (System.Exception ex)
             {
-                _logger.LogError(ex, "Error al obtener el empleado desde la API.");
+                _logger.LogError(ex, "Error getting employee from API.");
             }
             return employee;
         }
