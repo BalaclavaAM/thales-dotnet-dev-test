@@ -9,7 +9,7 @@ namespace TestProject
     public class BusinessLogicTests
     {
         // Mock the EmployeesRepository using Moq
-        private readonly Mock<IEmployeesRepository> _mockEmployeesRepository = new Mock<IEmployeesRepository>();
+        private readonly MockEmployeesRepository _mockEmployeesRepository = new MockEmployeesRepository();
 
         [TestMethod]
         public async Task CalculateAnnualSalaries_ShouldCalculateCorrectly()
@@ -20,9 +20,10 @@ namespace TestProject
                 new Employee { Id = 1, EmployeeSalary = 50000 },
                 new Employee { Id = 2, EmployeeSalary = 60000 }
             };
-            _mockEmployeesRepository.Setup(repo => repo.GetEmployees()).ReturnsAsync(employees);
 
-            var businessLogic = new EmployeeService((EmployeesRepository)_mockEmployeesRepository.Object, new NullLogger<EmployeeService>());
+            _mockEmployeesRepository._employees = employees;
+
+            var businessLogic = new EmployeeService(_mockEmployeesRepository, new NullLogger<EmployeeService>());
 
             // Act
             var result = await businessLogic.CalculateAnnualSalaries();
@@ -38,9 +39,10 @@ namespace TestProject
             // Arrange
             var employeeId = 1;
             var employee = new Employee { Id = employeeId, EmployeeSalary = 50000 };
-            _mockEmployeesRepository.Setup(repo => repo.GetEmployee(employeeId)).ReturnsAsync(employee);
 
-            var businessLogic = new EmployeeService((EmployeesRepository)_mockEmployeesRepository.Object, new NullLogger<EmployeeService>());
+            _mockEmployeesRepository._employees = new List<Employee> { employee };
+
+            var businessLogic = new EmployeeService(_mockEmployeesRepository, new NullLogger<EmployeeService>());
 
             // Act
             var result = await businessLogic.CalculateAnnualSalarieFromEmployee(employeeId);

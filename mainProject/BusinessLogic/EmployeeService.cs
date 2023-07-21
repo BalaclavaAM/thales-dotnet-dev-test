@@ -6,10 +6,10 @@ namespace thales_dotnet_dev_test.BusinessLogic
 {
     public class EmployeeService
     {
-        private readonly EmployeesRepository _employeesRepository;
+        private readonly IEmployeesRepository _employeesRepository;
         private readonly ILogger<EmployeeService> _logger;
 
-        public EmployeeService(EmployeesRepository employeesRepository, ILogger<EmployeeService> logger)
+        public EmployeeService(IEmployeesRepository employeesRepository, ILogger<EmployeeService> logger)
         {
             _employeesRepository = employeesRepository;
             _logger = logger;
