@@ -9,15 +9,15 @@ import { Observable } from 'rxjs';
 export class EmpoyeeService {
   constructor(private httpClient: HttpClient) {}
 
-  getEmployees(): Observable<Employee[]> {
+  getEmployees(baseUrl: string): Observable<Employee[]> {
     return this.httpClient.get<Employee[]>(
-      'https://localhost:44380/api/employees'
+      baseUrl+'api/employees'
     );
   }
 
-  getEmployeeById(id: number): Observable<Employee> {
+  getEmployeeById(baseUrl: string, id: string): Observable<Employee> {
     return this.httpClient.get<Employee>(
-      `https://localhost:44380/api/employees/${id}`
+      baseUrl+`api/employees/${id}`
     );
   }
 }
