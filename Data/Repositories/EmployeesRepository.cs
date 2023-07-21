@@ -3,7 +3,7 @@ using thales_dotnet_dev_test.Models;
 
 namespace thales_dotnet_dev_test.Data.Repositories
 {
-    public class EmployeesRepository
+    public class EmployeesRepository : IEmployeesRepository
     {
         private readonly ILogger<EmployeesRepository> _logger;
         private readonly HttpClient _httpClient;
