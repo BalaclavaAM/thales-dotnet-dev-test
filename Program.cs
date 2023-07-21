@@ -8,11 +8,21 @@ namespace thales_dotnet_dev_test{
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
             builder.Services.AddHttpClient();
+            builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped<EmployeesRepository>();
             builder.Services.AddScoped<EmployeeService>();
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                });
+            });
 
             var app = builder.Build();
 
