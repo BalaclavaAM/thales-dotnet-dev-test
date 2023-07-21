@@ -15,7 +15,7 @@
 
 To get started with the application, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/BalaclavaAM/MySPA.git`
+1. Clone the repository: `git clone https://github.com/BalaclavaAM/thales-dotnet-dev-test.git`
 2. Open the project in Visual Studio (or your preferred IDE).
 3. Build the solution to restore NuGet packages and npm dependencies.
 4. Run the application using VS Studio 2022 or VSCode
