@@ -11,7 +11,7 @@ namespace thales_dotnet_dev_test{
             builder.Services.AddHttpClient();
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddScoped<EmployeesRepository>();
+            builder.Services.AddScoped<IEmployeesRepository, EmployeesRepository>();
             builder.Services.AddScoped<EmployeeService>();
 
             builder.Services.AddCors(options =>
